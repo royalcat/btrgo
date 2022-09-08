@@ -3,7 +3,7 @@ package btrstuct
 import "sync"
 
 // REWORK
-type TreeRoot[K comparable, V any] struct {
+type Tree[K comparable, V any] struct {
 	m    sync.RWMutex
 	root treeBranch[K, V]
 }
@@ -14,7 +14,7 @@ type treeBranch[K comparable, V any] struct {
 	hasValue bool
 }
 
-func (t *TreeRoot[K, V]) Get(branch []K) (V, bool) {
+func (t *Tree[K, V]) Get(branch []K) (V, bool) {
 	t.m.RLock()
 	defer t.m.RUnlock()
 
@@ -35,7 +35,7 @@ func (t *TreeRoot[K, V]) Get(branch []K) (V, bool) {
 	return cur.value, false
 }
 
-func (t *TreeRoot[K, V]) Set(branch []K, value V) {
+func (t *Tree[K, V]) Set(branch []K, value V) {
 	t.m.Lock()
 	defer t.m.Unlock()
 
@@ -52,7 +52,7 @@ func (t *TreeRoot[K, V]) Set(branch []K, value V) {
 	cur.hasValue = true
 }
 
-func (t *TreeRoot[K, V]) Has(branch []K) bool {
+func (t *Tree[K, V]) Has(branch []K) bool {
 
 	cur := t.root
 	ok := true
