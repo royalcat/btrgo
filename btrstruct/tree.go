@@ -1,4 +1,4 @@
-package btrstuct
+package btrstruct
 
 import "sync"
 
@@ -19,7 +19,6 @@ func (t *Tree[K, V]) Get(branch []K) (V, bool) {
 	defer t.m.RUnlock()
 
 	cur := t.root
-
 	ok := true
 	for _, key := range branch {
 		cur, ok = cur.branches[key]
