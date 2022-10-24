@@ -51,3 +51,13 @@ func SliceUnique[V comparable](s []V) []V {
 	}
 	return s
 }
+
+func RemoveElements[T comparable](slice []T, elem T) []T {
+	n := make([]T, 0)
+	for _, v := range slice {
+		if v != elem {
+			n = append(n, v)
+		}
+	}
+	return n
+}
