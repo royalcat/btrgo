@@ -1,6 +1,8 @@
 package btrgo
 
-// operations on constant size slices
+import "golang.org/x/exp/constraints"
+
+// slice operations without size changes
 
 func InSlice[V comparable](arr []V, val V) bool {
 
@@ -60,4 +62,20 @@ func RemoveElements[T comparable](slice []T, elem T) []T {
 		}
 	}
 	return n
+}
+
+func Sort[T constraints.Ordered](x []T) {
+	n := len(x)
+	for {
+		swapped := false
+		for i := 1; i < n; i++ {
+			if x[i] < x[i-1] {
+				x[i-1], x[i] = x[i], x[i-1]
+				swapped = true
+			}
+		}
+		if !swapped {
+			return
+		}
+	}
 }
