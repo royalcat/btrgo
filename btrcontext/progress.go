@@ -1,4 +1,4 @@
-package btrctx
+package btrcontext
 
 import (
 	"context"
@@ -20,6 +20,10 @@ var _ UpdateContext[any] = (*updateContext[any])(nil)
 
 func (ctx *updateContext[T]) Update(new T) {
 	ctx.updateBuf.In() <- new
+}
+
+func (ctx *updateContext[T]) Close(new T) {
+	ctx.updateBuf.Close()
 }
 
 func WithUpdates[T any](parent context.Context) (ctx context.Context, updates <-chan T) {
