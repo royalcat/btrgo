@@ -135,7 +135,7 @@ func SliceDiff[V comparable](a, b []V) []V {
 	return diff
 }
 
-func SliceDiffSplited[V comparable](a, b []V) (adds, dels []V) {
+func SliceDiffSplited[V comparable](a, b []V) (dels, adds []V) {
 	aMap := map[V]bool{}
 	for _, v := range a {
 		aMap[v] = true
@@ -151,6 +151,6 @@ func SliceDiffSplited[V comparable](a, b []V) (adds, dels []V) {
 		delete(bMap, v)
 	}
 
-	return KeysOfMap(bMap), KeysOfMap(aMap)
+	return KeysOfMap(aMap), KeysOfMap(bMap)
 
 }
