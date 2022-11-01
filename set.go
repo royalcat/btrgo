@@ -1,7 +1,17 @@
 package btrgo
 
+// Not thread safe
 type Set[V comparable] struct {
 	m map[V]bool
+}
+
+func SetFromSlice[V comparable](slice []V) Set[V] {
+	m := make(map[V]bool, len(slice)/2)
+	for _, v := range slice {
+		m[v] = true
+	}
+
+	return Set[V]{m: m}
 }
 
 func (s *Set[V]) Len() int {
