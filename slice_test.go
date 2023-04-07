@@ -38,3 +38,31 @@ func TestSliceDiffSplited(t *testing.T) {
 
 	}
 }
+
+func TestSliceUnique(t *testing.T) {
+	values := []pair[[]int]{
+		{[]int{1, 2, 1}, []int{1, 2}},
+		{[]int{1, 2, 3}, []int{1, 2, 3}},
+		{[]int{}, []int{}},
+		{[]int{3, 2}, []int{2, 3}},
+		{[]int{-1, 1, -1}, []int{-1, 1}},
+	}
+	for _, v := range values {
+		res := btrgo.SliceUnique(v.I)
+		btrgo.Sort(res)
+		if !btrgo.CompareSlices(v.J, res) {
+			t.Errorf("For slice %v expected unique slice %v got %v", v.I, v.J, res)
+		}
+	}
+}
+
+func testSliceUnic(t *testing.T, i, r []int) {
+	res := btrgo.SliceUnique(i)
+	if btrgo.CompareSlices(r, res) {
+		t.Errorf("Expected slice %v got %v", r, res)
+	}
+}
+
+type pair[V any] struct {
+	I, J V
+}

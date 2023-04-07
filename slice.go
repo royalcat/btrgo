@@ -81,16 +81,18 @@ func CompareSlices[V comparable](a, b []V) bool {
 	return true
 }
 
+// return unique elements from given slice
+// doesn't sort elements, expect output elements in random order
 func SliceUnique[V comparable](s []V) []V {
 	keys := make(map[V]bool, len(s))
 	list := make([]V, 0, len(s))
 	for _, entry := range s {
-		if _, value := keys[entry]; !value {
+		if _, ok := keys[entry]; !ok {
 			keys[entry] = true
 			list = append(list, entry)
 		}
 	}
-	return s
+	return list
 }
 
 func RemoveElements[T comparable](slice []T, elem T) []T {
