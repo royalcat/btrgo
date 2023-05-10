@@ -19,7 +19,7 @@ func (t *Tree[K, V]) Get(branch []K) (V, bool) {
 	defer t.m.RUnlock()
 
 	cur := t.root
-	ok := true
+	var ok bool
 	for _, key := range branch {
 		cur, ok = cur.branches[key]
 		if !ok {
@@ -39,7 +39,7 @@ func (t *Tree[K, V]) Set(branch []K, value V) {
 	defer t.m.Unlock()
 
 	cur := t.root
-	ok := true
+	var ok bool
 	for _, key := range branch {
 		cur, ok = cur.branches[key]
 		if !ok {
@@ -54,7 +54,7 @@ func (t *Tree[K, V]) Set(branch []K, value V) {
 func (t *Tree[K, V]) Has(branch []K) bool {
 
 	cur := t.root
-	ok := true
+	var ok bool
 	for _, key := range branch {
 		cur, ok = cur.branches[key]
 		if !ok {

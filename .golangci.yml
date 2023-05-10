@@ -1,0 +1,30 @@
+linters:
+  enable:
+    - revive
+    - nakedret
+    - gomoddirectives
+    - importas
+    - misspell
+    - promlinter
+    - prealloc
+    - predeclared
+    - stylecheck
+    - errcheck
+    - ineffassign
+
+linters-settings:
+  revive:
+    ignore-generated-header: true
+    severity: warning
+    rules:
+      - name: blank-imports
+        disabled: true
+  staticcheck:
+    checks:
+      - "-SA4006"
+  gosimple:
+    checks:
+      - "-S1002"
+  stylecheck:
+    checks:
+      - "-ST1003"

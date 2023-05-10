@@ -8,7 +8,7 @@ import (
 
 type UpdateContext[T any] interface {
 	context.Context
-	Update(new T)
+	Update(T)
 }
 
 type updateContext[T any] struct {
@@ -18,11 +18,11 @@ type updateContext[T any] struct {
 
 var _ UpdateContext[any] = (*updateContext[any])(nil)
 
-func (ctx *updateContext[T]) Update(new T) {
-	ctx.updateBuf.In() <- new
+func (ctx *updateContext[T]) Update(update T) {
+	ctx.updateBuf.In() <- update
 }
 
-func (ctx *updateContext[T]) Close(new T) {
+func (ctx *updateContext[T]) Close(update T) {
 	ctx.updateBuf.Close()
 }
 

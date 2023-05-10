@@ -1,4 +1,4 @@
-// EXPEREMENTAL
+// EXPERIMENTAL
 package btrsql
 
 import (
