@@ -14,6 +14,11 @@ func SetFromSlice[V comparable](slice []V) Set[V] {
 	return Set[V]{m: m}
 }
 
+func (s *Set[V]) Contains(v V) bool {
+	_, ok := s.m[v]
+	return ok
+}
+
 func (s *Set[V]) Len() int {
 	if s.m == nil {
 		return 0
