@@ -1,7 +1,5 @@
 package btrgo
 
-import "golang.org/x/exp/constraints"
-
 func Paginate[V any](x []V, skip int, size int) []V {
 	if skip > len(x) {
 		skip = len(x)
@@ -59,28 +57,6 @@ func Chunks[V any](xs []V, chunkSize int) [][]V {
 	return divided
 }
 
-func InSlice[V comparable](arr []V, val V) bool {
-
-	for _, v := range arr {
-		if v == val {
-			return true
-		}
-	}
-	return false
-}
-
-func CompareSlices[V comparable](a, b []V) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := 0; i < len(a); i++ {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
-}
-
 // return unique elements from given slice
 // doesn't sort elements, expect output elements in random order
 func SliceUnique[V comparable](s []V) []V {
@@ -93,32 +69,6 @@ func SliceUnique[V comparable](s []V) []V {
 		}
 	}
 	return list
-}
-
-func RemoveElements[T comparable](slice []T, elem T) []T {
-	n := make([]T, 0)
-	for _, v := range slice {
-		if v != elem {
-			n = append(n, v)
-		}
-	}
-	return n
-}
-
-func Sort[T constraints.Ordered](x []T) {
-	n := len(x)
-	for {
-		swapped := false
-		for i := 1; i < n; i++ {
-			if x[i] < x[i-1] {
-				x[i-1], x[i] = x[i], x[i-1]
-				swapped = true
-			}
-		}
-		if !swapped {
-			return
-		}
-	}
 }
 
 func SliceDiff[V comparable](a, b []V) []V {
@@ -154,5 +104,4 @@ func SliceDiffSplited[V comparable](a, b []V) (dels, adds []V) {
 	}
 
 	return KeysOfMap(aMap), KeysOfMap(bMap)
-
 }

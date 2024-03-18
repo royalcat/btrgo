@@ -1,5 +1,6 @@
 package btrgo
 
+// Deprecated: use std golang.org/x/exp/maps.Keys
 func KeysOfMap[K comparable, V any](m map[K]V) []K {
 	keys := make([]K, len(m))
 
@@ -12,6 +13,7 @@ func KeysOfMap[K comparable, V any](m map[K]V) []K {
 	return keys
 }
 
+// Deprecated: use std golang.org/x/exp/maps.Values
 func ValuesOfMap[K comparable, V any](m map[K]V) []V {
 	values := make([]V, len(m))
 
@@ -29,16 +31,6 @@ func FilterMap[K comparable, V any](keys []K, data map[K]V) map[K]V {
 
 	for _, key := range keys {
 		newMap[key] = data[key]
-	}
-
-	return newMap
-}
-
-func CopyMap[K comparable, V any](data map[K]V) map[K]V {
-	newMap := make(map[K]V, len(data))
-
-	for key, value := range data {
-		newMap[key] = value
 	}
 
 	return newMap
